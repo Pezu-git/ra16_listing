@@ -1,3 +1,7 @@
+// let quantityClass = require('classnames')
+import cn from 'classnames';
+
+
 const ListingItem = ({url, src, title, currency, price, quantity}) => {
     let currentCurrency = `${price} GBP`;
     if (currency === 'USD') {
@@ -6,17 +10,9 @@ const ListingItem = ({url, src, title, currency, price, quantity}) => {
     if (currency === 'EUR') {
       currentCurrency = `€${price}`
     }
-  
-    let quantityClass = 'item-quantity';
-    if (quantity > 20) {
-      quantityClass += ' level-high';
-    }
-    if (quantity <= 10) {
-      quantityClass += ' level-low';
-    }
-    if (quantity > 10 && quantity <= 20) {
-      quantityClass += ' level-medium';
-    }
+    
+    const btnClass = cn('item-quantity', {'level-high': quantity > 20}, {'level-low': (quantity <= 10)}, {'level-medium': (quantity > 10 && quantity <= 20)});
+    
   
     return (
       <div className="item">
@@ -28,7 +24,7 @@ const ListingItem = ({url, src, title, currency, price, quantity}) => {
         <div className="item-details">
           <p className="item-title">{title}</p>
           <p className="item-price">{currentCurrency}</p>
-          <p className={quantityClass}>{quantity} left</p>
+          <p className={btnClass}>{quantity} left</p>
         </div>
       </div>
     );

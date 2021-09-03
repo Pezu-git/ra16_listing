@@ -10,11 +10,10 @@ function Listing(props) {
     props.items.splice(22, 1)
 
     return(
-        <div className="item-list" key={Math.random()}>
+        <div className="item-list" >
             {props.items.map(item => (
-                <div>
+                <div key={item.listing_id}>
                     <ListingItem 
-                        key={item.listing_id}
                         url={item.url}
                         src={item.MainImage.url_570xN}
                         title={item.title}
@@ -33,7 +32,7 @@ Listing.defaultProps = {
 }
 
 Listing.propTypes = {
-    items: propTypes.array,
+    items: propTypes.array
 }
 
 export default Listing
