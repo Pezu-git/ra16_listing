@@ -7,11 +7,16 @@ import ListingItem from "./ListingItem";
 
 function Listing(props) {
     //state: deleted
-    props.items.splice(22, 1)
+    let listArr = []
+    props.items.forEach(i => {
+        if (i.state !== 'removed') {
+            listArr.push(i)
+        }
+    })
 
     return(
         <div className="item-list" >
-            {props.items.map(item => (
+            {listArr.map(item => (
                 <div key={item.listing_id}>
                     <ListingItem 
                         url={item.url}
